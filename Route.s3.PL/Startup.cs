@@ -1,9 +1,11 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Route.s3.DAL.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,6 +26,18 @@ namespace Route.s3.PL
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+
+            //services.AddScoped<ApplicationDbContext>();
+            //services.AddScoped<DbContextOptions>();
+
+            services.AddDbContext<ApplicationDbContext>( //for add in DI container
+
+                options=>options.UseSqlServer("Server = DESKTOP-U2HDASP\\MSSQLSERVER01; Database= MVCP1; trusted_Connection = True;"),
+     
+                contextLifetime:ServiceLifetime.Scoped,
+                optionsLifetime:ServiceLifetime.Scoped
+                
+                );
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
