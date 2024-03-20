@@ -15,12 +15,12 @@ namespace Route.s3.PL
 {
     public class Startup
     {
+        public IConfiguration Configuration { get; }
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
         }
 
-        public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -32,7 +32,7 @@ namespace Route.s3.PL
 
             services.AddDbContext<ApplicationDbContext>( //for add in DI container
 
-                options=>options.UseSqlServer("Server = DESKTOP-U2HDASP\\MSSQLSERVER01; Database= MVCP1; trusted_Connection = True;"),
+                options=>options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")),
      
                 contextLifetime:ServiceLifetime.Scoped,
                 optionsLifetime:ServiceLifetime.Scoped
