@@ -5,6 +5,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Route.s3.BLL.Interfaces;
+using Route.s3.BLL.Repositories;
 using Route.s3.DAL.Data;
 using System;
 using System.Collections.Generic;
@@ -29,6 +31,7 @@ namespace Route.s3.PL
 
             //services.AddScoped<ApplicationDbContext>();
             //services.AddScoped<DbContextOptions>();
+            services.AddScoped<IDepartmentRepository, DepartmentRepository>();
 
             services.AddDbContext<ApplicationDbContext>( //for add in DI container
 

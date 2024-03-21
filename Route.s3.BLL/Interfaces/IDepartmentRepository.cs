@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Route.s3.BLL.Interfaces
 {
-    internal interface IDepartmentRepository
+    public interface IDepartmentRepository
     {
         int Add(Department entity);
 
