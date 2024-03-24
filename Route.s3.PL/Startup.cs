@@ -32,6 +32,7 @@ namespace Route.s3.PL
             //services.AddScoped<ApplicationDbContext>();
             //services.AddScoped<DbContextOptions>();
             services.AddScoped<IDepartmentRepository, DepartmentRepository>();
+            services.AddScoped<DepartmentRepository>();
 
             services.AddDbContext<ApplicationDbContext>( //for add in DI container
 
